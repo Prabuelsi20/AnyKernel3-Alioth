@@ -109,10 +109,12 @@ configure_auto() {
       if [[ "$oplus" != "1" ]]; then
         ui_print "--> AOSP/CLO ROM detected, configuring..."
         rom="rom_aosp"
+        dtbo="dtbo_def"
       else
         ui_print "--> Oplus Port ROM detected, configuring..."
+        rom="rom_port"
+        dtbo="dtbo_oem"
       fi
-      dtbo="dtbo_def"
       ;;
   esac
 
@@ -203,7 +205,6 @@ if [[ -f /vendor/OemPorts10T.prop ]] ||
   ui_print " ! Detected OPLUS Port ROM by Dandaa !"
   ui_print " ! Manual Configuration is Recommended !"
   ui_print " Note : Port ROM Usually Need KernelSU Root !"
-  rom="rom_port"
   oplus=1
 else
   oplus=0
