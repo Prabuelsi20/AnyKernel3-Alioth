@@ -1,2 +1,4 @@
-
-
+*.dtb
+*.dtbo
+*Image.gz
+*Image
