@@ -61,11 +61,19 @@ configure_manual() {
   case "$rom_sel" in
     *AOSP*|*CLO*)
       [ "$oplus" != "1" ] && rom="rom_aosp"
-      dtbo="dtbo_def"
+      if [[ "$devicename" == "pipa" ]]; then
+        dtbo="dtbo_def_pipa"
+      else
+        dtbo="dtbo_def"
+      fi
       ;;
     *MIUI*|*HyperOS*)
       [ "$oplus" != "1" ] && rom="rom_oem"
-      dtbo="dtbo_oem"
+      if [[ "$devicename" == "pipa" ]]; then
+        dtbo="dtbo_oem_pipa"
+      else
+        dtbo="dtbo_oem"
+      fi
       ;;
   esac
 
@@ -103,17 +111,29 @@ configure_auto() {
     cn|in|ru|id|eu|tr|tw|gb|global|mx|jp|kr|lm|cl|mi)
       ui_print "--> Miui/HyperOS ROM detected, configuring..."
       rom="rom_oem"
-      dtbo="dtbo_oem"
+      if [[ "$devicename" == "pipa" ]]; then
+        dtbo="dtbo_oem_pipa"
+      else
+        dtbo="dtbo_oem"
+      fi
       ;;
     *)
       if [[ "$oplus" != "1" ]]; then
         ui_print "--> AOSP/CLO ROM detected, configuring..."
         rom="rom_aosp"
-        dtbo="dtbo_def"
+        if [[ "$devicename" == "pipa" ]]; then
+          dtbo="dtbo_def_pipa"
+        else
+          dtbo="dtbo_def"
+        fi
       else
         ui_print "--> Oplus Port ROM detected, configuring..."
         rom="rom_port"
-        dtbo="dtbo_oem"
+        if [[ "$devicename" == "pipa" ]]; then
+          dtbo="dtbo_oem_pipa"
+        else
+          dtbo="dtbo_oem"
+        fi
       fi
       ;;
   esac
@@ -185,7 +205,7 @@ choose_config_mode() {
 # Install begins here
 # 
 
-devicename=lmi
+devicename=pipa
 case "$devicename" in
   munch|alioth|pipa)
     is_slot_device=1;
