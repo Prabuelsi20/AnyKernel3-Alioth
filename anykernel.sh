@@ -18,7 +18,7 @@ devicecheck() {
   vendorproduct=$(getprop ro.vendor.product.device 2>/dev/null);
   for testname in $(grep 'devicename' anykernel.sh | cut -d= -f2-); do
     for devicename in $device $product $vendordevice $vendorproduct; do
-      if [[ "$devicename" == *"$testname"* ]]; then
+      if [[ "$devicename" == *"$testname"* ]] || [[ "$devicename2" == *"$testname"* ]]; then
         match=1
         break
       fi
@@ -212,6 +212,17 @@ case "$devicename" in
   ;;
   apollo|lmi)
     is_slot_device=0;
+  ;;
+esac
+case "$devicename" in
+  munch)
+    devicename2=munchin
+  ;;
+  alioth)
+    devicename2=aliothin
+  ;;
+  apollo)
+    devicename2=apollon
   ;;
 esac
 block=/dev/block/bootdevice/by-name/boot
