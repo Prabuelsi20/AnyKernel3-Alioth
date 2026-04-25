@@ -239,7 +239,7 @@ if [[ -f /vendor/OemPorts10T.prop ]] ||
   oplus=1
 else
   oplus=0
-  devicecheck
+  # devicecheck (problematc)
 fi
 
 sleep 0.5
