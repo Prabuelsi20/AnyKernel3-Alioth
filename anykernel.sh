@@ -274,9 +274,5 @@ else
   ui_print "--> Installing to boot partition... "
 fi
 
-if [[ ! -f /vendor/etc/task_profiles.json ]]; then
-	ui_print " " " Note : Uclamp Task Profile Not Found ! " " "
-fi
-
 ui_print " " " E404R Kernel @ Project113 "
 ui_print " " " --- Install Complete --- "
